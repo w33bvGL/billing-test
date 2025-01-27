@@ -18,16 +18,5 @@ namespace App\Http\Controllers;
  */
 abstract class Controller
 {
-    /**
-     * @OA\Post(
-     *     path="/api/v1/auth/register",
-     *     tags={"AuthController"},
-     *     summary="AuthController::register | Регистрация пользователя",
-     *
-     *     @OA\Parameter( name="Accept-Language", in="header", description="Язык ответа", required=true, @OA\Schema(type="string", example="en")),
-     *
-     *     @OA\Response( response=200, description="Успешный ответ"),
-     * )
-     */
     public function exampleMethod() {}
 }
