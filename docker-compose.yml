@@ -40,7 +40,7 @@ services:
             ]
         volumes:
             - ./tmp/mysql/:/var/lib/mysql
-            - ./_docker/my.cnf:/etc/mysql/my.cnf
+            - ./.docker/my.cnf:/etc/mysql/my.cnf
         restart: always
         networks:
             - test
