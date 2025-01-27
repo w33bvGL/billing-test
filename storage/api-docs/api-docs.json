@@ -1,0 +1,606 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Тестовое задание 1: Биллинг",
+        "description": "https://github.com/w33bvGL",
+        "contact": {
+            "name": "Vahe",
+            "email": "w33bv.gl@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/user": {
+            "get": {
+                "tags": [
+                    "Пользователи"
+                ],
+                "summary": "Получение списка всех пользователей",
+                "description": "Получает список всех пользователей",
+                "operationId": "cea70256eac046d8265856751f62166f",
+                "responses": {
+                    "200": {
+                        "description": "Список пользователей",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": [
+                                        {
+                                            "type": "integer",
+                                            "example": 1,
+                                            "property": "id"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "example": "Иван Иванов",
+                                            "property": "name"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "example": "ivan@example.com",
+                                            "property": "email"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z",
+                                            "property": "created_at"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z",
+                                            "property": "updated_at"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Пользователи"
+                ],
+                "summary": "Регистрация нового пользователя",
+                "description": "Создает нового пользователя",
+                "operationId": "86fc0081eedeedc0f6738febde5fea8d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Иван Иванов"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "ivan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Пользователь успешно создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User Successfully created"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Иван Иванов"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "ivan@example.com"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2021-01-01T12:00:00Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2021-01-01T12:00:00Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации данных",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/{id}": {
+            "get": {
+                "tags": [
+                    "Пользователи"
+                ],
+                "summary": "Получение информации о пользователе по ID",
+                "description": "Получает информацию о пользователе",
+                "operationId": "c63c4123cbf0e902f851e755c65a8dac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Идентификатор пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о пользователе",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Иван Иванов"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "ivan@example.com"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Пользователь не найден"
+                    }
+                }
+            }
+        },
+        "/api/v1/user/transaction/deposit": {
+            "post": {
+                "tags": [
+                    "Транзакции"
+                ],
+                "summary": "Пополнение счета пользователя",
+                "description": "Пополнение счета пользователя через транзакцию депозита",
+                "operationId": "c0bca846abe9a05a4f8ed17f7c35a772",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "amount",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100.5
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Пополнение через банк"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Транзакция депозита успешно завершена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Deposit successful"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации данных",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error message"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/transaction/withdrawal": {
+            "post": {
+                "tags": [
+                    "Транзакции"
+                ],
+                "summary": "Снятие средств с счета пользователя",
+                "description": "Снятие средств с счета пользователя через транзакцию вывода",
+                "operationId": "1deb929f9597378dccbd04bd32ae6f3c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "amount",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 50.75
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Снятие через терминал"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Транзакция вывода успешно завершена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Withdrawal successful"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации данных",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error message"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/transaction/history/{id}": {
+            "get": {
+                "tags": [
+                    "Транзакции"
+                ],
+                "summary": "Получение списка транзакций пользователя",
+                "description": "Получение всех транзакций для пользователя по ID",
+                "operationId": "0bfeebfef7c8c91ce113b9cdfe1484bc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Идентификатор пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "sort_by",
+                                    "sort_order"
+                                ],
+                                "properties": {
+                                    "sort_by": {
+                                        "type": "string",
+                                        "enum": [
+                                            "created_at",
+                                            "amount",
+                                            "description"
+                                        ],
+                                        "example": "created_at"
+                                    },
+                                    "sort_order": {
+                                        "type": "string",
+                                        "enum": [
+                                            "asc",
+                                            "desc"
+                                        ],
+                                        "example": "desc"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Список транзакций пользователя",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": [
+                                        {
+                                            "type": "integer",
+                                            "example": 1,
+                                            "property": "id"
+                                        },
+                                        {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 50.75,
+                                            "property": "amount"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "example": "Пополнение через терминал",
+                                            "property": "description"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z",
+                                            "property": "created_at"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z",
+                                            "property": "updated_at"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации данных",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/transaction/history/": {
+            "get": {
+                "tags": [
+                    "Транзакции"
+                ],
+                "summary": "Получение списка всех транзакций",
+                "description": "Получение всех транзакций с сортировкой по различным полям",
+                "operationId": "67f64bb4572762422a7479b2cf13902c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "sort_by",
+                                    "sort_order"
+                                ],
+                                "properties": {
+                                    "sort_by": {
+                                        "type": "string",
+                                        "enum": [
+                                            "created_at",
+                                            "amount",
+                                            "description"
+                                        ],
+                                        "example": "created_at"
+                                    },
+                                    "sort_order": {
+                                        "type": "string",
+                                        "enum": [
+                                            "asc",
+                                            "desc"
+                                        ],
+                                        "example": "desc"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Список всех транзакций",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": [
+                                        {
+                                            "type": "integer",
+                                            "example": 1,
+                                            "property": "id"
+                                        },
+                                        {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 50.75,
+                                            "property": "amount"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "example": "Пополнение через терминал",
+                                            "property": "description"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z",
+                                            "property": "created_at"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T12:00:00Z",
+                                            "property": "updated_at"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации данных",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Пользователи",
+            "description": "Пользователи"
+        },
+        {
+            "name": "Транзакции",
+            "description": "Транзакции"
+        }
+    ]
+}
