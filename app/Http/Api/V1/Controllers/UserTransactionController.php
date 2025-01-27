@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Api\V1\Controllers;
 
 use App\Http\Resources\UserTransactionCollection;
 use App\Http\Services\UserTransactionService;

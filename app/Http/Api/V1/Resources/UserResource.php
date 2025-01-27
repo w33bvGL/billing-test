@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Resources;
+namespace App\Http\Api\V1\Resources;
 
 use App\Models\UserBalance;
 use Illuminate\Http\Request;
