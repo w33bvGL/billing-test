@@ -189,19 +189,29 @@ class UserTransactionController extends Controller
      *         @OA\Schema(type="integer")
      *     ),
      *
-     *     @OA\RequestBody(
+     *     @OA\Parameter(
+     *         name="sort_by",
+     *         in="query",
      *         required=true,
+     *         description="Поле для сортировки",
      *
-     *         @OA\MediaType(
-     *             mediaType="application/json",
+     *         @OA\Schema(
+     *             type="string",
+     *             enum={"created_at", "amount", "description"},
+     *             example="created_at"
+     *         )
+     *     ),
      *
-     *             @OA\Schema(
-     *                 type="object",
-     *                 required={"sort_by", "sort_order"},
+     *     @OA\Parameter(
+     *         name="sort_order",
+     *         in="query",
+     *         required=true,
+     *         description="Порядок сортировки",
      *
-     *                 @OA\Property(property="sort_by", type="string", enum={"created_at", "amount", "description"}, example="created_at"),
-     *                 @OA\Property(property="sort_order", type="string", enum={"asc", "desc"}, example="desc")
-     *             )
+     *         @OA\Schema(
+     *             type="string",
+     *             enum={"asc", "desc"},
+     *             example="desc"
      *         )
      *     ),
      *
@@ -261,19 +271,29 @@ class UserTransactionController extends Controller
      *     description="Получение всех транзакций с сортировкой по различным полям",
      *     tags={"Транзакции"},
      *
-     *     @OA\RequestBody(
+     *     @OA\Parameter(
+     *         name="sort_by",
+     *         in="query",
      *         required=true,
+     *         description="Поле для сортировки",
      *
-     *         @OA\MediaType(
-     *             mediaType="application/json",
+     *         @OA\Schema(
+     *             type="string",
+     *             enum={"created_at", "amount", "description"},
+     *             example="created_at"
+     *         )
+     *     ),
      *
-     *             @OA\Schema(
-     *                 type="object",
-     *                 required={"sort_by", "sort_order"},
+     *     @OA\Parameter(
+     *         name="sort_order",
+     *         in="query",
+     *         required=true,
+     *         description="Порядок сортировки",
      *
-     *                 @OA\Property(property="sort_by", type="string", enum={"created_at", "amount", "description"}, example="created_at"),
-     *                 @OA\Property(property="sort_order", type="string", enum={"asc", "desc"}, example="desc")
-     *             )
+     *         @OA\Schema(
+     *             type="string",
+     *             enum={"asc", "desc"},
+     *             example="desc"
      *         )
      *     ),
      *
