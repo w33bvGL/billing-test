@@ -2337,8 +2337,7 @@ namespace PHPSTORM_META {
         registerArgumentsSet('middleware', 
 'web','api',);
         registerArgumentsSet('routes', 
-'l5-swagger.default.api','l5-swagger.default.docs','l5-swagger.default.asset','l5-swagger.default.oauth2_callback',
-'storage.local',);
+'l5-swagger.default.api','l5-swagger.default.docs','l5-swagger.default.asset','l5-swagger.default.oauth2_callback','storage.local',);
         registerArgumentsSet('views', 
 'l5-swagger::index','vendor.l5-swagger.index','l5-swagger::index','laravel-exceptions-renderer::components.card','laravel-exceptions-renderer::components.context',
 'laravel-exceptions-renderer::components.editor','laravel-exceptions-renderer::components.header','laravel-exceptions-renderer::components.icons.chevron-down','laravel-exceptions-renderer::components.icons.chevron-up','laravel-exceptions-renderer::components.icons.computer-desktop',
