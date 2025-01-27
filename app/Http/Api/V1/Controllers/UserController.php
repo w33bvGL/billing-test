@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Api\V1\Controllers;
 
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
-use App\Http\Services\UserService;
+use App\Http\Api\V1\Resources\UserCollection;
+use App\Http\Api\V1\Resources\UserResource;
+use App\Http\Api\V1\Services\UserService;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

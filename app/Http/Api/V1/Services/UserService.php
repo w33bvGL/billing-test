@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Services;
+namespace App\Http\Api\V1\Services;
 
 use App\Models\User;
 use App\Models\UserBalance;
