@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
 /**
- * @property int $id
+ * @property int    $id
  * @property string $user_id
  * @property string $amount
  * @property string $description

@@ -32,7 +32,7 @@ class User extends Model
         return $this->hasOne(UserBalance::class);
     }
 
-    private function transactions(): HasMany
+    public function transactions(): HasMany
     {
         return $this->hasMany(UserTransaction::class);
     }

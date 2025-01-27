@@ -35,7 +35,9 @@ class UserTransactionService
 
     public function getUserTransactions(int $userId, string $sortBy = 'created_at', string $sortOrder = 'desc'): Collection
     {
-        return UserTransaction::where('user_id', $userId)
+        $user = User::findOrFail($userId);
+
+        return $user->transactions()
             ->orderBy($sortBy, $sortOrder)
             ->get();
     }
