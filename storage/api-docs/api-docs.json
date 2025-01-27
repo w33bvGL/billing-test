@@ -406,41 +406,37 @@
                         "schema": {
                             "type": "integer"
                         }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "sort_by",
-                                    "sort_order"
-                                ],
-                                "properties": {
-                                    "sort_by": {
-                                        "type": "string",
-                                        "enum": [
-                                            "created_at",
-                                            "amount",
-                                            "description"
-                                        ],
-                                        "example": "created_at"
-                                    },
-                                    "sort_order": {
-                                        "type": "string",
-                                        "enum": [
-                                            "asc",
-                                            "desc"
-                                        ],
-                                        "example": "desc"
-                                    }
-                                },
-                                "type": "object"
-                            }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Поле для сортировки",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "created_at",
+                                "amount",
+                                "description"
+                            ],
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "Порядок сортировки",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "example": "desc"
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Список транзакций пользователя",
@@ -504,39 +500,37 @@
                 "summary": "Получение списка всех транзакций",
                 "description": "Получение всех транзакций с сортировкой по различным полям",
                 "operationId": "67f64bb4572762422a7479b2cf13902c",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "sort_by",
-                                    "sort_order"
-                                ],
-                                "properties": {
-                                    "sort_by": {
-                                        "type": "string",
-                                        "enum": [
-                                            "created_at",
-                                            "amount",
-                                            "description"
-                                        ],
-                                        "example": "created_at"
-                                    },
-                                    "sort_order": {
-                                        "type": "string",
-                                        "enum": [
-                                            "asc",
-                                            "desc"
-                                        ],
-                                        "example": "desc"
-                                    }
-                                },
-                                "type": "object"
-                            }
+                "parameters": [
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Поле для сортировки",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "created_at",
+                                "amount",
+                                "description"
+                            ],
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "Порядок сортировки",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "example": "desc"
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Список всех транзакций",
