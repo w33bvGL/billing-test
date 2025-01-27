@@ -6,17 +6,13 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use App\Models\UserTransaction;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Throwable;
-use Exception;
 
 class UserTransactionService
 {
     /**
-     * @param int $userId
-     * @param float $amount
-     * @param string|null $description
-     * @return void
      * @throws Throwable
      */
     public function createDeposit(int $userId, float $amount, ?string $description): void
@@ -27,10 +23,6 @@ class UserTransactionService
     }
 
     /**
-     * @param int $userId
-     * @param float $amount
-     * @param string|null $description
-     * @return void
      * @throws Throwable
      */
     public function createWithdrawal(int $userId, float $amount, ?string $description): void
@@ -41,16 +33,11 @@ class UserTransactionService
     }
 
     /**
-     * @param int $userId
-     * @param float $amount
-     * @param string $type
-     * @param string|null $description
-     * @return void
      * @throws Throwable
      */
     private function createTransaction(int $userId, float $amount, string $type, ?string $description): void
     {
-        $user = User::findOrFail($userId);
+        $user        = User::findOrFail($userId);
         $userBalance = $user->balance;
 
         if ($type === 'withdrawal' && $userBalance->balance < $amount) {

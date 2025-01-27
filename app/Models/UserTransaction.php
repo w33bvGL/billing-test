@@ -13,7 +13,7 @@ class UserTransaction extends Model
         'user_id',
         'type',
         'amount',
-        'description'
+        'description',
     ];
 
     public function user(): BelongsTo

@@ -10,19 +10,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
 /**
- * @property int    $id
- * @property string $name
- * @property string $email
- * @property Carbon $created_at
- * @property Carbon $updated_at
+ * @property int         $id
+ * @property string      $name
+ * @property string      $email
+ * @property Carbon      $created_at
+ * @property Carbon      $updated_at
  * @property UserBalance $balance
  */
 class UserResource extends JsonResource
 {
-    /**
-     * @param Request $request
-     * @return array
-     */
     public function toArray(Request $request): array
     {
         return [

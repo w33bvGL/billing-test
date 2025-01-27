@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Services\UserTransactionService;
+use App\Models\User;
+use App\Models\UserTransaction;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Throwable;
-use Exception;
 
 class UserTransactionController extends Controller
 {
@@ -53,6 +56,49 @@ class UserTransactionController extends Controller
             return response()->json(['errors' => $e->errors()], 422);
         } catch (Throwable $e) {
             return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getUserTransactions(int $id, Request $request): JsonResponse
+    {
+        try {
+            $request->validate([
+                'sort_by' => 'nullable|in:created_at,amount,description',
+                'sort_order' => 'nullable|in:asc,desc',
+            ]);
+
+            $user = User::findOrFail($id);
+
+            $sortBy    = $request->input('sort_by', 'created_at');
+            $sortOrder = $request->input('sort_order', 'desc');
+
+            $transactions = UserTransaction::where('user_id', $user->id)
+                ->orderBy($sortBy, $sortOrder)
+                ->get();
+
+            return response()->json($transactions);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
+        }
+    }
+
+    public function getAllTransactions(Request $request): JsonResponse
+    {
+        try {
+            $request->validate([
+                'sort_by' => 'nullable|in:created_at,amount,description',
+                'sort_order' => 'nullable|in:asc,desc',
+            ]);
+
+            $sortBy    = $request->input('sort_by', 'created_at');
+            $sortOrder = $request->input('sort_order', 'desc');
+
+            $transactions = UserTransaction::orderBy($sortBy, $sortOrder)
+                ->get();
+
+            return response()->json($transactions);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
         }
     }
 }

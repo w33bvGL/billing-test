@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * @property UserBalance $balance
+ * @property UserBalance     $balance
  * @property UserTransaction $transaction
  */
 class User extends Model
@@ -27,17 +27,11 @@ class User extends Model
         'password',
     ];
 
-    /**
-     * @return HasOne
-     */
     public function balance(): HasOne
     {
         return $this->hasOne(UserBalance::class);
     }
 
-    /**
-     * @return HasMany
-     */
     private function transactions(): HasMany
     {
         return $this->hasMany(UserTransaction::class);

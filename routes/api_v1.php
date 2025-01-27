@@ -14,7 +14,11 @@ Route::prefix('v1')->group(function () {
         Route::prefix('transaction')->group(function () {
             Route::post('deposit', [UserTransactionController::class, 'deposit']);
             Route::post('withdrawal', [UserTransactionController::class, 'withdrawal']);
-            Route::get('history', [UserTransactionController::class, 'history']);
+            Route::prefix('history')->group(function () {
+                Route::get('{id}', [UserTransactionController::class, 'getUserTransactions']);
+                Route::get('', [UserTransactionController::class, 'getAllTransactions']);
+            });
         });
     });
+
 });
