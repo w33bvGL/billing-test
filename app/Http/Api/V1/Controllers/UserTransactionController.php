@@ -6,6 +6,8 @@ namespace App\Http\Api\V1\Controllers;
 
 use App\Http\Api\V1\Resources\UserTransactionCollection;
 use App\Http\Api\V1\Services\UserTransactionService;
+use App\Jobs\DepositTransactionJob;
+use App\Jobs\WithdrawalTransactionJob;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -30,7 +32,8 @@ class UserTransactionController extends Controller
                 'description' => 'required|string',
             ]);
 
-            $this->userTransactionService->createDeposit($request->user_id, $request->amount, $request->description);
+            // $this->userTransactionService->createDeposit($request->user_id, $request->amount, $request->description);
+            DepositTransactionJob::dispatch($request->user_id, $request->amount, $request->description);
 
             return response()->json(['message' => 'Deposit successful']);
         } catch (ValidationException $e) {
@@ -49,7 +52,8 @@ class UserTransactionController extends Controller
                 'description' => 'required|string',
             ]);
 
-            $this->userTransactionService->createWithdrawal($request->user_id, $request->amount, $request->description);
+            // $this->userTransactionService->createWithdrawal($request->user_id, $request->amount, $request->description);
+            WithdrawalTransactionJob::dispatch($request->user_id, $request->amount, $request->description);
 
             return response()->json(['message' => 'Withdrawal successful'], 201);
         } catch (ValidationException $e) {

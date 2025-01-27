@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserTransactionController;
+use App\Http\Api\V1\Controllers\UserController;
+use App\Http\Api\V1\Controllers\UserTransactionController;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('user')->group(function () {

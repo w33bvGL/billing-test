@@ -33,7 +33,7 @@ class UserController extends Controller
             $user = $this->userService->createUser($validatedData);
 
             return response()->json([
-                'message' => 'Пользователь успешно создан',
+                'message' => 'User Successfully created',
                 'user' => new UserResource($user),
             ], 201);
 
