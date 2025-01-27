@@ -6,9 +6,9 @@ namespace App\Http\Api\V1\Controllers;
 
 /**
  * @OA\Info(
- *     title="Saga Online Application Programming Interface API",
+ *     title="Тестовое задание 1: Биллинг",
  *     version="1.0.0",
- *     description="API для работы cайта SagaOnline",
+ *     description="https://github.com/w33bvGL",
  *
  *     @OA\Contact(
  *         name="Vahe",
