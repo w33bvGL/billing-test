@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserTransactionCollection;
 use App\Http\Services\UserTransactionService;
 use App\Models\User;
-use App\Models\UserTransaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -72,11 +72,9 @@ class UserTransactionController extends Controller
             $sortBy    = $request->input('sort_by', 'created_at');
             $sortOrder = $request->input('sort_order', 'desc');
 
-            $transactions = UserTransaction::where('user_id', $user->id)
-                ->orderBy($sortBy, $sortOrder)
-                ->get();
+            $transactions = $this->userTransactionService->getUserTransactions($user->id, $sortBy, $sortOrder);
 
-            return response()->json($transactions);
+            return response()->json(new UserTransactionCollection($transactions));
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         }
@@ -93,10 +91,9 @@ class UserTransactionController extends Controller
             $sortBy    = $request->input('sort_by', 'created_at');
             $sortOrder = $request->input('sort_order', 'desc');
 
-            $transactions = UserTransaction::orderBy($sortBy, $sortOrder)
-                ->get();
+            $transactions = $this->userTransactionService->getAllTransactions($sortBy, $sortOrder);
 
-            return response()->json($transactions);
+            return response()->json(new UserTransactionCollection($transactions));
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         }

@@ -7,6 +7,7 @@ namespace App\Http\Services;
 use App\Models\User;
 use App\Models\UserTransaction;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -30,6 +31,18 @@ class UserTransactionService
         User::findOrFail($userId);
 
         $this->createTransaction($userId, $amount, 'withdrawal', $description);
+    }
+
+    public function getUserTransactions(int $userId, string $sortBy = 'created_at', string $sortOrder = 'desc'): Collection
+    {
+        return UserTransaction::where('user_id', $userId)
+            ->orderBy($sortBy, $sortOrder)
+            ->get();
+    }
+
+    public function getAllTransactions(string $sortBy = 'created_at', string $sortOrder = 'desc'): Collection
+    {
+        return UserTransaction::orderBy($sortBy, $sortOrder)->get();
     }
 
     /**
