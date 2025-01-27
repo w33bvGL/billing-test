@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @property UserBalance $balance
+ * @property UserTransaction $transaction
+ */
 class User extends Model
 {
     use HasFactory;

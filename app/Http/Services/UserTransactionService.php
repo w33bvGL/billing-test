@@ -6,13 +6,12 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use App\Models\UserTransaction;
-use http\Exception\BadConversionException;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Exception;
+
 class UserTransactionService
 {
-
     /**
      * @param int $userId
      * @param float $amount
@@ -24,7 +23,7 @@ class UserTransactionService
     {
         User::findOrFail($userId);
 
-        $this->createTransaction($userId, $amount, 'withdrawal', $description);
+        $this->createTransaction($userId, $amount, 'deposit', $description);
     }
 
     /**
@@ -58,7 +57,8 @@ class UserTransactionService
             throw new Exception('Insufficient balance');
         }
 
-        DB::transaction(function () use ($userBalance, $amount, $type, $description) {
+        DB::transaction(function () use ($user, $userBalance, $amount, $type, $description) {
+
             if ($type === 'deposit') {
                 $userBalance->balance += $amount;
             } else {
@@ -68,7 +68,7 @@ class UserTransactionService
             $userBalance->save();
 
             UserTransaction::create([
-                'user_id' => $userBalance->user_id,
+                'user_id' => $user->id,
                 'type' => $type,
                 'amount' => $amount,
                 'description' => $description,
