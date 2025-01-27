@@ -63,8 +63,8 @@ class UserTransactionController extends Controller
     {
         try {
             $request->validate([
-                'sort_by' => 'nullable|in:created_at,amount,description',
-                'sort_order' => 'nullable|in:asc,desc',
+                'sort_by' => 'required|in:created_at,amount,description',
+                'sort_order' => 'required|in:asc,desc',
             ]);
 
             $user = User::findOrFail($id);
@@ -84,8 +84,8 @@ class UserTransactionController extends Controller
     {
         try {
             $request->validate([
-                'sort_by' => 'nullable|in:created_at,amount,description',
-                'sort_order' => 'nullable|in:asc,desc',
+                'sort_by' => 'required|in:created_at,amount,description',
+                'sort_order' => 'required|in:asc,desc',
             ]);
 
             $sortBy    = $request->input('sort_by', 'created_at');
