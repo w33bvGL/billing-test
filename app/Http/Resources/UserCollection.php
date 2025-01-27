@@ -9,6 +9,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserCollection extends ResourceCollection
 {
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function toArray(Request $request): array
     {
         return $this->collection->map(function ($user) {
